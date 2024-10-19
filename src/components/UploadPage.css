@@ -1,0 +1,115 @@
+/* src/components/UploadPage.css */
+
+.upload-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f4f8; /* Light background color */
+    min-height: 100vh;
+    overflow: auto; /* Allow content to scroll if necessary */
+  }
+  
+  .upload-title {
+    color: #333; /* Dark text color */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .upload-section {
+    width: 300px;
+    margin-bottom: 20px;
+  }
+  
+  .upload-box {
+    width: 100%;
+    height: 300px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .upload-box:hover {
+    border-color: #ff6f61; /* Hover border color */
+  }
+  
+  .placeholder-text {
+    color: #aaa;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  .uploaded-image {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+  }
+  
+  .upload-button {
+    padding: 10px 20px;
+    background-color: #ff6f61; /* Button background color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .upload-button:hover {
+    background-color: #e65a50; /* Button hover color */
+  }
+  
+  .loading-spinner {
+    margin-top: 20px;
+  }
+  
+  .analysis-section,
+  .response-section {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .analysis-section h2,
+  .response-section h2 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .analysis-section p {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .response-section .typed-text {
+    font-size: 16px;
+    color: #555;
+    white-space: pre-wrap; /* Preserve formatting */
+    min-height: 100px; /* Ensure the container has enough height */
+  }
+  
+  @media (max-width: 600px) {
+    .upload-section {
+      width: 100%;
+    }
+  
+    .analysis-section,
+    .response-section {
+      width: 100%;
+      padding: 15px;
+    }
+  }
+  
