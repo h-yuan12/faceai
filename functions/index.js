@@ -1,9 +1,9 @@
 // functions/index.js
 
-const { onRequest } = require("firebase-functions/v2/https");
+const {onRequest} = require("firebase-functions/v2/https");
 const logger = require("firebase-functions/logger");
 const axios = require("axios");
-const cors = require("cors")({ origin: true }); // Allow all origins. Adjust as needed.
+const cors = require("cors")({origin: true});
 
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
@@ -17,15 +17,17 @@ exports.analyzeIngredientList = onRequest(async (req, res) => {
 
   // Only allow POST requests
   if (req.method !== "POST") {
-    res.status(405).json({ message: "Method Not Allowed. Use POST." });
+    res.status(405).json({message: "Method Not Allowed. Use POST."});
     return;
   }
 
-  const { ingredients, ingredient_group } = req.body;
+  const {ingredients, ingredientGroup} = req.body;
 
   // Basic validation
-  if (!ingredients || !ingredient_group) {
-    res.status(400).json({ message: "Missing 'ingredients' or 'ingredient_group' in request body." });
+  if (!ingredients || !ingredientGroup) {
+    res.status(400).json({
+      message: "Missing 'ingredients' or 'ingredientGroup' in request body.",
+    });
     return;
   }
 
@@ -33,25 +35,27 @@ exports.analyzeIngredientList = onRequest(async (req, res) => {
     // Fetch the access token from environment variables
     const ACCESS_TOKEN = "";
 
-    if (!ACCESS_TOKEN) {
-      logger.error("COSMILY_ACCESS_TOKEN is not set in environment variables.");
-      res.status(500).json({ message: "Server configuration error." });
-      return;
-    }
+    // if (!ACCESS_TOKEN) {
+    //   logger.error(
+    //       "COSMILY_ACCESS_TOKEN is not set in environment variables.",
+    //   );
+    //   res.status(500).json({message: "Server configuration error."});
+    //   return;
+    // }
 
     // Make the request to Cosmily API
     const cosmilyResponse = await axios.post(
-      "https://api.cosmily.com/api/v1/analyze/ingredient_list",
-      {
-        ingredients: ingredients,
-        ingredient_group: ingredient_group,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
+        "https://api.cosmily.com/api/v1/analyze/ingredient_list",
+        {
+          ingredients,
+          ingredientGroup,
         },
-      }
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${ACCESS_TOKEN}`,
+          },
+        },
     );
 
     // Forward the response from Cosmily API to the frontend
@@ -60,16 +64,16 @@ exports.analyzeIngredientList = onRequest(async (req, res) => {
     logger.error("Error communicating with Cosmily API:", error.message);
 
     if (error.response) {
-      // The request was made, and the server responded with a status code outside of 2xx
       res.status(error.response.status).json({
         message: error.response.data.message || "Error from Cosmily API",
       });
     } else if (error.request) {
       // The request was made, but no response was received
-      res.status(500).json({ message: "No response from Cosmily API." });
+      res.status(500).json({message: "No response from Cosmily API."});
     } else {
       // Something happened in setting up the request
-      res.status(500).json({ message: "Error setting up request to Cosmily API." });
+      res.status(500).json({message:
+        "Error setting up request to Cosmily API."});
     }
   }
 });

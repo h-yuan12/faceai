@@ -1,115 +1,625 @@
 /* src/components/UploadPage.css */
 
 .upload-page {
-    display: flex;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-color: #f5f5f5; /* Light gray background for better contrast */
+  font-family: Arial, sans-serif;
+  padding: 20px; /* Added padding */
+  box-sizing: border-box;
+  display: flex;
+}
+
+/* Zoom Modal Styles */
+.zoom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.zoomed-image {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+/* Ingredient Details Modal Styles */
+.ingredient-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1500;
+}
+
+.ingredient-content {
+  background-color: #fff;
+  padding: 40px; /* Increased padding */
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.ingredient-content h2 {
+  margin-top: 0;
+}
+
+.ingredient-content h3 {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.ingredient-content p {
+  margin-bottom: 15px;
+}
+
+.ingredient-content ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+/* Combined Properties */
+.properties-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Common styles for all property bubbles */
+.property-bubble {
+  padding: 4px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.9em;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Specific styles for boolean properties */
+.boolean-bubble {
+  background-color: #4caf50; /* Green */
+}
+
+/* Specific styles for integer properties */
+/* Integer bubble colors */
+.color-0 {
+  background-color: green;
+}
+
+.color-1 {
+  background-color: #9ACD32; /* YellowGreen */
+}
+
+.color-2 {
+  background-color: yellow;
+  color: black; /* Better contrast on yellow */
+}
+
+.color-3 {
+  background-color: orange;
+}
+
+.color-4 {
+  background-color: red;
+}
+
+.color-default {
+  background-color: gray;
+}
+
+/* Close button styles */
+.close-modal-button {
+  padding: 10px 20px;
+  background-color: #0084ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px; /* Added margin-top */
+}
+
+.close-modal-button:hover {
+  background-color: #0056b3;
+}
+
+/* Key Container Styles */
+.key-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.key-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9em;
+}
+
+.safety-color-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+/* Uploaded Image and Ingredient Sidebar */
+.image-corner {
+  width: 160px;
+  margin-right: 20px;
+}
+
+.uploaded-image-corner {
+  width: 100%;
+  height: auto;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.uploaded-image-corner:hover {
+  transform: scale(1.05);
+}
+
+/* Ingredient Sidebar Styles */
+.ingredient-sidebar {
+  margin-top: 10px;
+  background-color: #ffffff; /* White background for clarity */
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: calc(100vh - 140px); /* Adjusted to take full height minus image and margins */
+  overflow-y: auto;
+}
+
+.ingredient-sidebar h3 {
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center;
+}
+
+.ingredient-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Animation for Ingredient Buttons */
+@keyframes dragIn {
+  0% {
+    transform: translateY(-20px) scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(5px) scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.ingredient-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  animation: dragIn 0.5s ease-out;
+  color: #fff;
+}
+
+/* Safety Classes */
+.safety-safe {
+  background-color: #28a745; /* Green */
+}
+
+.safety-lightgreen {
+  background-color: #90ee90; /* Light Green */
+}
+
+.safety-moderate {
+  background-color: #ffc107; /* Yellow */
+  color: black; /* Better contrast on yellow */
+}
+
+.safety-warning {
+  background-color: #fd7e14; /* Orange */
+}
+
+.safety-unsafe {
+  background-color: #dc3545; /* Red */
+}
+
+.safety-unknown {
+  background-color: #6c757d; /* Grey */
+}
+
+.ingredient-button:hover {
+  opacity: 0.8;
+}
+
+/* Right Panel Styles */
+.right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px; /* Increased padding */
+  box-sizing: border-box;
+  background-color: transparent; /* Matches the page background */
+}
+
+/* Chat Container Styles */
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Chat Messages Styles */
+.chat-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chat-message {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.user-message {
+  justify-content: flex-end;
+}
+
+.gemini-message {
+  justify-content: flex-start;
+}
+
+.message-content {
+  max-width: 70%;
+  padding: 12px;
+  border-radius: 15px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.user-message .message-content {
+  background-color: #0084ff;
+  color: #fff;
+  border-bottom-right-radius: 0;
+}
+
+.gemini-message .message-content {
+  background-color: #e5e5ea;
+  color: #000;
+  border-bottom-left-radius: 0;
+}
+
+.gemini-message .message-content p {
+  margin: 0;
+}
+
+.gemini-message .message-content ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+/* Chat Input Form Styles */
+.chat-input-form {
+  display: flex;
+  padding: 10px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  outline: none;
+}
+
+.chat-send-button {
+  background: none;
+  border: none;
+  color: #0084ff;
+  font-size: 18px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.chat-send-button:hover {
+  color: #0056b3;
+}
+
+.chat-send-button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Upload Form Styles */
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.upload-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.upload-section {
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.upload-box {
+  width: 100%;
+  height: 300px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.upload-box:hover {
+  border-color: #0084ff;
+}
+
+.placeholder-text {
+  color: #aaa;
+  font-size: 18px;
+  text-align: center;
+}
+
+.uploaded-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+}
+
+.upload-button,
+.skip-button {
+  padding: 10px 20px;
+  background-color: #0084ff;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.skip-button {
+  background-color: #6c757d;
+}
+
+.upload-button:hover,
+.skip-button:hover {
+  background-color: #006bbd;
+}
+
+.upload-button:disabled,
+.skip-button:disabled {
+  background-color: #a0cfff;
+  cursor: not-allowed;
+}
+
+/* Confirm and Proceed Button Styles */
+.confirm-button,
+.proceed-button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.confirm-button:hover,
+.proceed-button:hover {
+  background-color: #218838;
+}
+
+.confirm-button:disabled,
+.proceed-button:disabled {
+  background-color: #a3d7a5;
+  cursor: not-allowed;
+}
+
+/* Traits Section Styles */
+.traits-section {
+  margin-bottom: 20px;
+}
+
+.traits-section h2 {
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center;
+}
+
+.traits-buttons {
+  display: flex;
+  flex-direction: column; /* Vertical alignment */
+  gap: 20px;
+}
+
+.trait-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.trait-group h3 {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.trait-button {
+  padding: 8px 12px;
+  border: 1px solid #0084ff;
+  border-radius: 20px;
+  background-color: #fff;
+  color: #0084ff;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.trait-button.active {
+  background-color: #0084ff;
+  color: #fff;
+}
+
+.trait-button:hover {
+  background-color: #e0f0ff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+  .upload-page {
     flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background-color: #f0f4f8; /* Light background color */
-    min-height: 100vh;
-    overflow: auto; /* Allow content to scroll if necessary */
   }
-  
-  .upload-title {
-    color: #333; /* Dark text color */
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .upload-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .upload-section {
-    width: 300px;
-    margin-bottom: 20px;
-  }
-  
-  .upload-box {
+
+  .right-panel {
     width: 100%;
-    height: 300px;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
-    background-color: #fff;
+    padding: 10px;
+  }
+
+  .image-corner {
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    cursor: pointer;
+    margin: 0;
   }
-  
-  .upload-box:hover {
-    border-color: #ff6f61; /* Hover border color */
+
+  .uploaded-image-corner {
+    width: 80px;
   }
-  
-  .placeholder-text {
-    color: #aaa;
-    font-size: 18px;
-    text-align: center;
+
+  .upload-section {
+    width: 250px;
   }
-  
-  .uploaded-image {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 10px;
+
+  .chat-messages {
+    padding: 10px;
   }
-  
-  .upload-button {
-    padding: 10px 20px;
-    background-color: #ff6f61; /* Button background color */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+
+  .trait-button {
+    padding: 6px 10px;
+    font-size: 14px;
   }
-  
-  .upload-button:hover {
-    background-color: #e65a50; /* Button hover color */
+
+  .upload-title {
+    font-size: 24px;
   }
-  
-  .loading-spinner {
-    margin-top: 20px;
+
+  .confirm-button,
+  .proceed-button {
+    padding: 8px 16px;
+    font-size: 14px;
   }
-  
-  .analysis-section,
-  .response-section {
+
+  .ingredient-sidebar {
     width: 100%;
-    max-width: 600px;
+    font-size: 14px;
+    height: auto;
     margin-top: 20px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  
-  .analysis-section h2,
-  .response-section h2 {
-    margin-bottom: 10px;
-    color: #333;
+
+  .image-corner,
+  .ingredient-sidebar {
+    position: static;
   }
-  
-  .analysis-section p {
+}
+
+@media (max-width: 600px) {
+  .message-content {
+    max-width: 100%;
+  }
+
+  .uploaded-image-corner {
+    width: 60px;
+  }
+
+  .trait-group h3 {
+    font-size: 14px;
+  }
+
+  .trait-button {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  .upload-section {
+    width: 200px;
+    height: 200px;
+  }
+
+  .upload-box {
+    height: 200px;
+  }
+
+  .chat-input {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .chat-send-button {
     font-size: 16px;
-    color: #555;
   }
-  
-  .response-section .typed-text {
-    font-size: 16px;
-    color: #555;
-    white-space: pre-wrap; /* Preserve formatting */
-    min-height: 100px; /* Ensure the container has enough height */
+
+  .ingredient-sidebar {
+    width: 100%;
+    font-size: 12px;
+    height: auto;
   }
-  
-  @media (max-width: 600px) {
-    .upload-section {
-      width: 100%;
-    }
-  
-    .analysis-section,
-    .response-section {
-      width: 100%;
-      padding: 15px;
-    }
+
+  .ingredient-content {
+    max-width: 90%;
   }
-  
+}
