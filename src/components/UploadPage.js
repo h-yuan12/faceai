@@ -461,7 +461,7 @@ function UploadPage() {
       //       }
       //     });
       //   }
-
+        const recommendations = [];
         // Remove duplicates
         const uniqueRecommendations = [...new Set(recommendations)];
         setProductRecommendations(uniqueRecommendations); // **Set Product Recommendations**
