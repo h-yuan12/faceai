@@ -42,6 +42,7 @@ cd faceai-skincare-assistant
 Ensure you have Node.js installed. Then, install the required packages:
 npm install
 
+
 ### 3. Start the Application
 npm start
 The application will run in development mode. Open http://localhost:3000 to view it in your browser.

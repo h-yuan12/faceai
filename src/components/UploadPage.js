@@ -420,18 +420,18 @@ function UploadPage() {
         ingredientGroup: ingredient_group,
       });
 
-      const cosmifyResponse = await axios.post(
-        BACKEND_FUNCTION_URL,
-        {
-          ingredients: ingredients,
-          ingredientGroup: ingredient_group,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+      // const cosmifyResponse = await axios.post(
+      //   BACKEND_FUNCTION_URL,
+      //   {
+      //     ingredients: ingredients,
+      //     ingredientGroup: ingredient_group,
+      //   },
+      //   {
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //   }
+      // );
 
       console.log('Cosmify API Response:', cosmifyResponse);
 
