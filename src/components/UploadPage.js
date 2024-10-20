@@ -462,15 +462,15 @@ function UploadPage() {
       //     });
       //   }
 
-      //   // Remove duplicates
-      //   const uniqueRecommendations = [...new Set(recommendations)];
-      //   setProductRecommendations(uniqueRecommendations); // **Set Product Recommendations**
+        // Remove duplicates
+        const uniqueRecommendations = [...new Set(recommendations)];
+        setProductRecommendations(uniqueRecommendations); // **Set Product Recommendations**
 
-      //   // **Set Initial Chat Messages with Evaluation Details**
-      //   const initialEvaluationMessage = `This is what I got from your face, please edit anything that is wrong using the buttons below. Once you're satisfied, click "Confirm Traits" to proceed.`;
+        // **Set Initial Chat Messages with Evaluation Details**
+        const initialEvaluationMessage = `This is what I got from your face, please edit anything that is wrong using the buttons below. Once you're satisfied, click "Confirm Traits" to proceed.`;
 
-      //   setChatMessages([{ sender: 'Gemini', text: initialEvaluationMessage }]);
-      //   setConversationStep('confirm'); // Move to confirmation step
+        setChatMessages([{ sender: 'Gemini', text: initialEvaluationMessage }]);
+        setConversationStep('confirm'); // Move to confirmation step
       // } else {
       //   console.error('Unexpected response from Cosmify API:', parsedData);
       //   alert('Unexpected response from the recommendation service. Please try again later.');
