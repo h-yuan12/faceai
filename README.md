@@ -35,19 +35,18 @@ To run FaceAI Skincare Assistant locally, follow these steps:
 
 ### 1. Clone the Repository
 
-```bash
 git clone https://github.com/yourusername/faceai-skincare-assistant.git
 cd faceai-skincare-assistant
 
-2. Install Dependencies
+### 2. Install Dependencies
 Ensure you have Node.js installed. Then, install the required packages:
 npm install
 
-4. Start the Application
+### 3. Start the Application
 npm start
 The application will run in development mode. Open http://localhost:3000 to view it in your browser.
 
-Usage
+### Usage
 1. Upload Your Image
 Click on the upload box to select a selfie from your device.
 
@@ -66,7 +65,7 @@ The AI will generate a detailed skincare routine tailored to your needs, includi
 6. Explore Ingredients
 Click on any ingredient in the sidebar to view detailed information about its properties and safety ratings.
 
-Technologies Used
+### Technologies Used
 Frontend:
 - React
 - OpenCV.js
@@ -82,7 +81,7 @@ Others:
 - CSS3
 - HTML5
 
-Contact
+### Contact
 For any inquiries or feedback, please reach out to:
 
 Email: harry_yuan@berkeley.edu
