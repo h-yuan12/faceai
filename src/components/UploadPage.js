@@ -433,6 +433,7 @@ function UploadPage() {
       //   }
       // );
 
+      const cosmifyResponse = {}
       console.log('Cosmify API Response:', cosmifyResponse);
 
       let parsedData = cosmifyResponse.data;
