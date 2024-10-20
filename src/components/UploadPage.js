@@ -433,49 +433,48 @@ function UploadPage() {
       //   }
       // );
 
-      const cosmifyResponse = {}
-      console.log('Cosmify API Response:', cosmifyResponse);
+      // console.log('Cosmify API Response:', cosmifyResponse);
 
-      let parsedData = cosmifyResponse.data;
-      if (typeof parsedData === 'string') {
-        try {
-          parsedData = JSON.parse(parsedData);
-        } catch (parseError) {
-          console.error('Error parsing Cosmify API response:', parseError);
-          setLoading(false);
-          return;
-        }
-      }
+      // let parsedData = cosmifyResponse.data;
+      // if (typeof parsedData === 'string') {
+      //   try {
+      //     parsedData = JSON.parse(parsedData);
+      //   } catch (parseError) {
+      //     console.error('Error parsing Cosmify API response:', parseError);
+      //     setLoading(false);
+      //     return;
+      //   }
+      // }
 
-      if (cosmifyResponse.status === 200 || cosmifyResponse.status === 201) {
-        console.log('Parsed Cosmify Response Data:', parsedData);
+      // if (cosmifyResponse.status === 200 || cosmifyResponse.status === 201) {
+      //   console.log('Parsed Cosmify Response Data:', parsedData);
 
-        // Process the response to extract product recommendations
-        const ingredientsTable = parsedData.analysis.ingredients_table;
+      //   // Process the response to extract product recommendations
+      //   const ingredientsTable = parsedData.analysis.ingredients_table;
 
-        const recommendations = [];
+      //   const recommendations = [];
 
-        if (Array.isArray(ingredientsTable)) {
-          ingredientsTable.forEach((ingredient) => {
-            if (ingredient.title) {
-              recommendations.push(ingredient.title);
-            }
-          });
-        }
+      //   if (Array.isArray(ingredientsTable)) {
+      //     ingredientsTable.forEach((ingredient) => {
+      //       if (ingredient.title) {
+      //         recommendations.push(ingredient.title);
+      //       }
+      //     });
+      //   }
 
-        // Remove duplicates
-        const uniqueRecommendations = [...new Set(recommendations)];
-        setProductRecommendations(uniqueRecommendations); // **Set Product Recommendations**
+      //   // Remove duplicates
+      //   const uniqueRecommendations = [...new Set(recommendations)];
+      //   setProductRecommendations(uniqueRecommendations); // **Set Product Recommendations**
 
-        // **Set Initial Chat Messages with Evaluation Details**
-        const initialEvaluationMessage = `This is what I got from your face, please edit anything that is wrong using the buttons below. Once you're satisfied, click "Confirm Traits" to proceed.`;
+      //   // **Set Initial Chat Messages with Evaluation Details**
+      //   const initialEvaluationMessage = `This is what I got from your face, please edit anything that is wrong using the buttons below. Once you're satisfied, click "Confirm Traits" to proceed.`;
 
-        setChatMessages([{ sender: 'Gemini', text: initialEvaluationMessage }]);
-        setConversationStep('confirm'); // Move to confirmation step
-      } else {
-        console.error('Unexpected response from Cosmify API:', parsedData);
-        alert('Unexpected response from the recommendation service. Please try again later.');
-      }
+      //   setChatMessages([{ sender: 'Gemini', text: initialEvaluationMessage }]);
+      //   setConversationStep('confirm'); // Move to confirmation step
+      // } else {
+      //   console.error('Unexpected response from Cosmify API:', parsedData);
+      //   alert('Unexpected response from the recommendation service. Please try again later.');
+      // }
     } catch (error) {
       console.error('Error:', error);
       if (error.response) {
