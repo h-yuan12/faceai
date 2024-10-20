@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+# FaceAI Skincare Assistant
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Let AI guide you through personalized skincare, ingredient insights, and the complexities of the beauty industry.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Introduction](#introduction)
+- [Features](#features)
+- [Live Demo](#live-demo)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [Contact](#contact)
 
-### `npm start`
+## Introduction
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+AI Skincare Consultant is a web application designed to simplify and personalize the skincare journey. By uploading a selfie, users can receive an analysis of their skin, identifying issues such as acne, oiliness, pigmentation, and wrinkles. The application then generates personalized skincare routines tailored to the user's unique skin profile, complete with product recommendations and detailed ingredient insights. Additionally, users can interact with the AI assistant to refine their preferences and gain in-depth knowledge about skincare ingredients, learning about the ingredients' usage and safety, ensuring informed and effective skincare choices.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+- **Image Analysis**: Upload a selfie to get a comprehensive analysis of your skin, including acne detection, oiliness/dryness levels, pigmentation assessment, and wrinkle identification using OpenCV.js.
+- **Personalized Skincare Routines**: Receive AI-generated skincare routines tailored to your specific skin needs.
+- **Ingredient Insights**: Explore detailed information about recommended skincare ingredients, including benefits and safety ratings based on EWG (Environmental Working Group) data.
+- **Interactive Chat Interface**: Engage with the AI assistant to refine your skincare routine preferences and specifications.
+- **Ingredient Details Modal**: Click on any ingredient to view in-depth details, including properties and safety information.
+- **Responsive Design**: Accessible and user-friendly across various devices and screen sizes.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Live Demo
 
-### `npm run build`
+Experience the application in action without any setup [here](#).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To run FaceAI Skincare Assistant locally, follow these steps:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1. Clone the Repository
 
-### `npm run eject`
+```bash
+git clone https://github.com/yourusername/faceai-skincare-assistant.git
+cd faceai-skincare-assistant
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Install Dependencies
+Ensure you have Node.js installed. Then, install the required packages:
+npm install
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Start the Application
+npm start
+The application will run in development mode. Open http://localhost:3000 to view it in your browser.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Usage
+1. Upload Your Image
+Click on the upload box to select a selfie from your device.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Review Skin Analysis
+The AI will display detected skin conditions such as acne severity, oiliness, pigmentation, and wrinkles.
 
-## Learn More
+3. Confirm Traits
+After reviewing, click "Confirm Traits" to proceed.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. Specify Preferences
+Provide any additional specifications or preferences for your skincare routine.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. Receive Personalized Routine
+The AI will generate a detailed skincare routine tailored to your needs, including product recommendations and ingredient insights.
 
-### Code Splitting
+6. Explore Ingredients
+Click on any ingredient in the sidebar to view detailed information about its properties and safety ratings.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Technologies Used
+Frontend:
+- React
+- OpenCV.js
+- Firebase
+- Vertex AI
+- Axios
 
-### Analyzing the Bundle Size
+Backend:
+- Firebase Cloud Functions
+- Gemini AI Model
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Others:
+- CSS3
+- HTML5
 
-### Making a Progressive Web App
+Contact
+For any inquiries or feedback, please reach out to:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Email: harry_yuan@berkeley.edu
